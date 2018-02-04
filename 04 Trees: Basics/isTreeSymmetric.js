@@ -100,15 +100,15 @@
 //   this.left = null;
 //   this.right = null;
 // }
-const testTrees = function (l, r) {
+const check = function (l, r = l) {
   if (!l && !r) return true;
 
-  if (!l || !r || l.value !== r.value) return false;
+  if (!l || !r || l.val !== r.val) return false;
 
-  return testTrees(l.left, r.right) && testTrees(l.right, r.left);
+  return check(l.left, r.right) && check(l.right, r.left);
 };
 
-const isTreeSymmetric = (t) => testTrees(t, t);
+const isSymmetric = (root) => root ? check(root.left, root.right) : true;
 
 // console.log(isTreeSymmetric({
 //     "value": 1,
