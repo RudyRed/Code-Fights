@@ -100,7 +100,7 @@
 //   this.left = null;
 //   this.right = null;
 // }
-const check = function (l, r = l) {
+const check = function (l, r) {
   if (!l && !r) return true;
 
   if (!l || !r || l.val !== r.val) return false;
@@ -110,7 +110,7 @@ const check = function (l, r = l) {
 
 const isSymmetric = (root) => root ? check(root.left, root.right) : true;
 
-// console.log(isTreeSymmetric({
+// console.log(isSymmetric({
 //     "value": 1,
 //     "left": {
 //         "value": 2,
@@ -140,7 +140,7 @@ const isSymmetric = (root) => root ? check(root.left, root.right) : true;
 //     }
 // }), 'shouldbe true');
 //
-// console.log(isTreeSymmetric({
+// console.log(isSymmetric({
 //     "value": 1,
 //     "left": {
 //         "value": 2,
