@@ -48,19 +48,17 @@
 // [output] integer
 //
 // The number of different possible sums that can be created from non-empty groupings of your coins.
-const possibleSums = (coins, quantities, sums = {}, sum = 0, init = true) => {
-  if (!coins.length) return sums[sum] = true
+const possibleSums = (coins, quantities, sums = {}, sum = 0, i = 0) => {
+  if (coins.length <= i) return sums[sum] = true
 
-  const coin = coins.pop()
-  const quantity = quantities.pop()
+  const coin = coins[i]
+  const quantity = quantities[i]
 
   for (let numOfCoins = 0; numOfCoins <= quantity; numOfCoins++) {
-    possibleSums(coins, quantities, sums, sum + (coin * numOfCoins), false)
+    possibleSums(coins, quantities, sums, sum + (coin * numOfCoins), i + 1)
   }
 
-  coins.push(coin)
-  quantities.push(quantity)
-  if (init) {
+  if (!i) {
     delete sums[0]
     return Object.keys(sums).length
   }
