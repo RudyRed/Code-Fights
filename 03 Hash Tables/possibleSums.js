@@ -48,27 +48,22 @@
 // [output] integer
 //
 // The number of different possible sums that can be created from non-empty groupings of your coins.
+const possibleSums = (coins, quantities, sums = {}, sum = 0, init = true) => {
+  if (!coins.length) return sums[sum] = true
 
-const possibleSums = function (coins, quantity, recursiveCall = false) {
+  const coin = coins.pop()
+  const quantity = quantities.pop()
 
-  let sums = {0: true};
-
-  while (coins.length) {
-    const coinVal = coins.pop();
-    const coinQuant = quantity.pop();
-    const res = possibleSums(coins, quantity, true);
-    for (let numOfCurrCoin = 0; numOfCurrCoin <= coinQuant; numOfCurrCoin++) {
-      for (let sum in res) {
-        sums[Number(sum) + coinVal * numOfCurrCoin] = true;
-      }
-    }
+  for (let numOfCoins = 0; numOfCoins <= quantity; numOfCoins++) {
+    possibleSums(coins, quantities, sums, sum + (coin * numOfCoins), false)
   }
 
-  if (recursiveCall) {
-    return sums;
+  coins.push(coin)
+  quantities.push(quantity)
+  if (init) {
+    delete sums[0]
+    return Object.keys(sums).length
   }
+}
 
-  return Object.keys(sums).length - 1;
-};
-
-// console.log(possibleSums([10, 50, 100, 500], [5, 3, 2, 2]), 's/b 9')
+console.log(possibleSums([10, 50, 100, 500], [5, 3, 2, 2]), 's/b 122')
