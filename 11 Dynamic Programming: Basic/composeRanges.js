@@ -8,6 +8,7 @@
 // Input/Output
 
 const composeRanges = nums => {
+  if (!nums.length) return []
   nums.reverse()
   let rangeEnd = lastInRange = nums.pop()
   const output = []
