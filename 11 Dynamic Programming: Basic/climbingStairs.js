@@ -12,7 +12,7 @@
 // You can either climb 2 steps at once or climb 1 step two times.
 
 const climbingStairs = (n, mem = {}) => {
-  if (n === 0) return 1
+  if (n === 1) return 1
   if (n === 2) return 2
 
   if (!mem[n - 1]) {
